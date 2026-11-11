@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>João Lucas | Systems, Minecraft & AI Developer</title>
+  <meta name="description" content="Engenheiro de software especializado em plugins de alta performance para Minecraft (Java, Paper, Spigot), sistemas distribuídos em Linux e agentes autônomos.">
+  
+  <!-- Fontes Geist e Geist Mono (Landing Page Design Standard) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace'],
+          },
+          colors: {
+            surface: {
+              950: '#000000',
+              900: '#090a0f',
+              850: '#11131a',
+              800: '#181a24',
+              700: '#232636',
+            },
+            accent: {
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              amber: '#f59e0b',
+              emerald: '#10b981',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Regras estritas: sem itálicos, texto balanceado, transições com curva pesada */
+    body {
+      font-family: 'Geist', sans-serif;
+      background-color: #090a0f;
+      color: #e2e8f0;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Headings & balance */
+    h1, h2, h3, h4 {
+      text-wrap: balance;
+    }
+    p {
+      text-wrap: pretty;
+    }
+
+    /* Gradiente restrito exclusivamente ao texto do Hero (Regra B5) */
+    .hero-title-gradient {
+      background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Base curve B7 */
+    .ease-curve {
+      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Glass surface Apple HIG */
+    .glass-bar {
+      background: rgba(9, 10, 15, 0.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .card-surface {
+      background: #11131a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .card-surface:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Palavra por palavra reveal da Tagline (Regra B11) */
+    .tagline-word {
+      transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      color: rgba(255, 255, 255, 0.28);
+    }
+    .tagline-word.revealed {
+      color: rgba(255, 255, 255, 0.95);
+    }
+  </style>
+</head>
+<body class="selection:bg-indigo-600 selection:text-white">
+
+  <!-- Floating Navigation (Regra B7) -->
+  <header class="fixed top-5 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
+    <div class="glass-bar pointer-events-auto rounded-full px-5 py-2.5 flex items-center justify-between gap-6 max-w-4xl w-full shadow-2xl">
+      <a href="#" class="flex items-center gap-2.5 text-sm font-semibold text-white tracking-tight">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-mono text-xs text-gray-300 font-medium">joaospina</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-xs text-gray-300 font-medium">
+        <a href="#minecraft" class="hover:text-white transition-colors duration-200">Minecraft & Java</a>
+        <a href="#sistemas" class="hover:text-white transition-colors duration-200">Sistemas & VPS</a>
+        <a href="#projetos" class="hover:text-white transition-colors duration-200">Projetos</a>
+        <a href="https://github.com/wdprozin2" target="_blank" class="hover:text-white transition-colors duration-200 flex items-center gap-1">
+          GitHub
+          <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+        <a href="#faq" class="hover:text-white transition-colors duration-200">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="https://github.com/wdprozin2" target="_blank" class="text-xs font-medium px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-white border border-white/10 transition-all duration-200 active:scale-[0.98]">
+          GitHub
+        </a>
+        <a href="#contato" class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white transition-all duration-200 shadow-md shadow-indigo-600/30 active:scale-[0.98]">
+          Contato
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 pt-36 pb-24">
+
+    <!-- HERO SECTION (Regra B5) -->
+    <section class="py-16 md:py-24 border-b border-white/10">
+      <div class="max-w-[680px]">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-indigo-300 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+          Java • Paper / Spigot • Linux VPS • Automação
+        </div>
+
+        <h1 class="hero-title-gradient text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.08] mb-6">
+          Desenvolvimento de plugins Java e sistemas de alta performance.
+        </h1>
+
+        <p class="text-gray-400 text-base sm:text-lg leading-relaxed mb-8">
+          Arquiteto de servidores Minecraft e sistemas distribuídos. Foco em código sem vazamento de memória, 20 TPS consistentes, eventos assíncronos e infraestrutura Linux resiliente.
+        </p>
+
+        <!-- CTA & Proof Signal -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a href="#contato" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold text-center transition-all duration-300 shadow-lg shadow-indigo-600/30 active:scale-[0.98]">
+            Entrar em contato
+          </a>
+          <a href="#minecraft" class="px-6 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-sm font-medium text-center transition-all duration-300 active:scale-[0.98]">
+            Ver stack Minecraft
+          </a>
+        </div>
+
+        <!-- Metric Proof Bar -->
+        <div class="grid grid-cols-3 gap-6 pt-12 mt-12 border-t border-white/10">
+          <div>
+            <div class="font-mono text-xl sm:text-2xl font-semibold text-white">20.0 TPS</div>
+            <div class="text-xs text-gray-400 mt-1 font-sans">Meta de tick rate contínua</div>
+          </div>
+          <div>
+            <div class="font-mono text-xl sm:text-2xl font-semibold text-white">24/7</div>
+            <div class="text-xs text-gray-400 mt-1 font-sans">Uptime em servidores Linux</div>
+          </div>
+          <div>
+            <div class="font-mono text-xl sm:text-2xl font-semibold text-white">&lt; 1.2s</div>
+            <div class="text-xs text-gray-400 mt-1 font-sans">Latência em eventos assíncronos</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: MINECRAFT SPECIALIZATION (PacMC Focus) -->
+    <section id="minecraft" class="py-20 border-b border-white/10">
+      <div class="mb-12">
+        <span class="text-xs font-mono uppercase tracking-wider text-amber-400">Especialização Principal</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold text-white mt-2">
+          Arquitetura para servidores de Minecraft
+        </h2>
+        <p class="text-gray-400 text-sm mt-3 max-w-xl">
+          Construção e suporte completo para redes Spigot, Paper e Fabric. Engenharia voltada a suportar dezenas de jogadores simultâneos sem queda de rendimento.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Card 1: Java & Paper Plugins -->
+        <div class="card-surface rounded-2xl p-6 transition-all duration-300">
+          <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h3 class="text-base font-semibold text-white mb-2">Plugins em Java & Paper API</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-4">
+            Criação de mecânicas personalizadas do zero: sistemas de economia, combate, gerenciamento de clãs, NBT seguro e inventários interativos via eventos.
+          </p>
+          <div class="space-y-1.5 font-mono text-[11px] text-gray-300 border-t border-white/5 pt-4">
+            <div>• Spigot / Paper / Purpur API</div>
+            <div>• Fabric Modding & Mixins</div>
+            <div>• PacketEvents & ProtocolLib</div>
+            <div>• Async Event Listeners</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Performance & Lag Mitigation -->
+        <div class="card-surface rounded-2xl p-6 transition-all duration-300">
+          <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-base font-semibold text-white mb-2">Otimização de TPS e Memória</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-4">
+            Diagnóstico de gargalos com Spark e Timings. Eliminação de loops bloqueantes na main thread e configuração de flags Aikar para o Garbage Collector.
+          </p>
+          <div class="space-y-1.5 font-mono text-[11px] text-gray-300 border-t border-white/5 pt-4">
+            <div>• Diagnóstico avançado com Spark</div>
+            <div>• Flags Aikar para ZGC e G1GC</div>
+            <div>• Otimização de Chunks & Entidades</div>
+            <div>• Profiling de memória e CPU</div>
+          </div>
+        </div>
+
+        <!-- Card 3: Cross-Server & Persistence -->
+        <div class="card-surface rounded-2xl p-6 transition-all duration-300">
+          <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7M4 7c0-2 1.5-3 3.5-3h9c2 0 3.5 1 3.5 3M4 7h16"/></svg>
+          </div>
+          <h3 class="text-base font-semibold text-white mb-2">Redes & Persistência de Dados</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-4">
+            Estruturação de redes multi servidores com Velocity e BungeeCord. Sincronização de inventários e dados entre instâncias via Redis e MySQL.
+          </p>
+          <div class="space-y-1.5 font-mono text-[11px] text-gray-300 border-t border-white/5 pt-4">
+            <div>• Velocity & BungeeCord Proxies</div>
+            <div>• Redis Pub/Sub em tempo real</div>
+            <div>• MySQL / PostgreSQL & HikariCP</div>
+            <div>• Integrações com Discord Webhooks</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MANDATORY TAGLINE REVEAL SECTION (Regra B11) -->
+    <section class="py-24 md:py-32 border-b border-white/10" id="tagline-reveal">
+      <div class="max-w-[680px]">
+        <span class="text-xs font-mono uppercase tracking-wider text-gray-400 block mb-4">Filosofia de Engenharia</span>
+        <p class="text-2xl sm:text-4xl font-semibold leading-relaxed" id="tagline-text">
+          Código robusto não é sobre adicionar linhas desnecessárias. É sobre garantir que cada instrução execute no tempo certo, com baixo consumo de memória e total estabilidade para quem joga.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION: SISTEMAS & INFRAESTRUTURA LINUX -->
+    <section id="sistemas" class="py-20 border-b border-white/10">
+      <div class="mb-12">
+        <span class="text-xs font-mono uppercase tracking-wider text-indigo-400">Infraestrutura em Produção</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold text-white mt-2">
+          Servidores Linux, Daemons e Automação
+        </h2>
+        <p class="text-gray-400 text-sm mt-3 max-w-xl">
+          Ambientes reais mantidos em nuvem com alta disponibilidade, monitoramento contínuo e deploy automatizado.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="card-surface rounded-2xl p-6">
+          <h3 class="text-base font-semibold text-white mb-2">Gerenciamento Linux VPS & Redes</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-4">
+            Configuração de servidores Ubuntu em nuvem, controle de firewall via UFW/iptables, mitigação básica de tráfego, automações SSH e orquestração de daemons via PM2 e Systemd.
+          </p>
+          <ul class="text-xs text-gray-300 space-y-2 font-mono">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Orquestração contínua com PM2 e monitoramento de CPU/RAM
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Rotinas automáticas de backup redundante
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Isolamento de processos e políticas de reinício automático
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-surface rounded-2xl p-6">
+          <h3 class="text-base font-semibold text-white mb-2">Pontes em Tempo Real & WebSockets</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-4">
+            Desenvolvimento de microsserviços integrando jogos, canais Discord e mensageria instantânea com entrega em milissegundos e sem polling repetitivo.
+          </p>
+          <ul class="text-xs text-gray-300 space-y-2 font-mono">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+              Ponte bidirecional Discord ⇄ Servidores com WebSockets
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+              Filtragem semântica de eventos e logs automatizados
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+              APIs REST locais para consulta de status e métricas
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: PROJETOS EM DESTAQUE -->
+    <section id="projetos" class="py-20 border-b border-white/10">
+      <div class="mb-12">
+        <span class="text-xs font-mono uppercase tracking-wider text-indigo-400">Casos Reais</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold text-white mt-2">
+          Projetos desenvolvidos e em produção
+        </h2>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- Projeto Principal Flagship: AegisPunish -->
+        <div class="card-surface rounded-2xl p-7 transition-all duration-300 border border-indigo-500/20 hover:border-indigo-500/40 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-48 h-48 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-mono uppercase tracking-wider text-indigo-400 font-semibold">Flagship Project • Open Source</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span class="text-[11px] font-mono text-emerald-400">Publicado</span>
+              </div>
+              <h3 class="text-xl font-bold text-white mt-1">AegisPunish — Enterprise-Grade Punishment & Moderation Suite</h3>
+            </div>
+            <span class="self-start sm:self-auto px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 font-mono text-[11px] text-indigo-300 font-medium">Java 21/25 • Multi-Platform</span>
+          </div>
+          
+          <p class="text-gray-300 text-sm leading-relaxed mb-5">
+            Suíte corporativa de punições e moderação distribuída desenvolvida para redes modernas de Minecraft. Arquitetura multi-módulo em Gradle Kotlin DSL com separação estrita entre API pública, Core desacoplado e módulos dedicados para proxies e servidores de jogo.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5 p-4 rounded-xl bg-surface-900/60 border border-white/5 font-mono text-xs text-gray-300">
+            <div class="space-y-1">
+              <span class="text-gray-400 uppercase text-[10px] tracking-wider block">Plataformas Suportadas</span>
+              <div>Paper • Purpur • Folia • Velocity • BungeeCord</div>
+            </div>
+            <div class="space-y-1">
+              <span class="text-gray-400 uppercase text-[10px] tracking-wider block">Destaques de Engenharia</span>
+              <div>Multi-server sync, cache assíncrono e zero blocking na main thread</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-white/5">
+            <div class="flex flex-wrap gap-2 text-[11px] font-mono text-gray-400">
+              <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">Gradle Kotlin DSL</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">Folia Ready</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">Velocity & Paper API</span>
+              <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">GPL-3.0</span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <a href="https://github.com/wdprozin2/AegisPunish" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 text-white font-mono text-xs transition-colors">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                GitHub
+              </a>
+              <a href="https://wdprozin2.github.io/AegisPunish/" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 border border-indigo-500/40 text-indigo-200 font-mono text-xs transition-colors">
+                Documentação / Wiki
+              </a>
+              <a href="https://www.spigotmc.org/resources/139053/" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 font-mono text-xs transition-colors">
+                SpigotMC
+              </a>
+              <a href="https://modrinth.com/plugin/aegispunish" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 font-mono text-xs transition-colors">
+                Modrinth
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projeto 2: Servidor Minecraft & Plugins Custom -->
+        <div class="card-surface rounded-2xl p-7 transition-all duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-wider text-amber-400">Minecraft & Backend</span>
+              <h3 class="text-lg font-semibold text-white mt-1">PineconeMC & Módulos para Redes de Servidores</h3>
+            </div>
+            <span class="self-start sm:self-auto px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-[11px] text-gray-300">Java / Paper / Fabric</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-5">
+            Arquitetura de instâncias otimizadas, empacotamento de mods/plugins, gerenciamento de permissões granulares e mitigação de perdas de pacotes para comunidades de jogadores.
+          </p>
+          <div class="flex flex-wrap gap-2 text-[11px] font-mono text-gray-400">
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">PaperMC</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">Fabric Loader</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">HikariCP</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">Spark Profiler</span>
+          </div>
+        </div>
+
+        <!-- Projeto 3: Event Gateway & Real-Time Bridge 24/7 -->
+        <div class="card-surface rounded-2xl p-7 transition-all duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-wider text-indigo-400">Automação & Redes</span>
+              <h3 class="text-lg font-semibold text-white mt-1">Multi-Channel Event Gateway & Real-Time Bridge</h3>
+            </div>
+            <span class="self-start sm:self-auto px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 font-mono text-[11px] text-emerald-400">Online 24/7 em Produção</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-5">
+            Gateway distribuído rodando em VPS Ubuntu. Conecta eventos instantâneos, manipulação de áudio neural em tempo real e orquestração de mensagens de rede com failover automático e alta disponibilidade.
+          </p>
+          <div class="flex flex-wrap gap-2 text-[11px] font-mono text-gray-400">
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">Node.js</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">WebSockets Engine</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">Discord.js</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">Linux Daemon</span>
+          </div>
+        </div>
+
+        <!-- Projeto 3: Copiloto com Filtragem Semântica -->
+        <div class="card-surface rounded-2xl p-7 transition-all duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-wider text-indigo-400">Inteligência Artificial</span>
+              <h3 class="text-lg font-semibold text-white mt-1">Autonomous Contextual Copilot & SKIP Filter</h3>
+            </div>
+            <span class="self-start sm:self-auto px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-[11px] text-gray-300">Engine de Decisão</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-5">
+            Mecanismo inteligente de análise contextual de conversas de grupo. Lê grafos de interlocutores para descartar diálogos paralelos e acionar sugestões apenas quando o usuário é citado ou perguntado diretamente.
+          </p>
+          <div class="flex flex-wrap gap-2 text-[11px] font-mono text-gray-400">
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">Prompt Engineering</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">Dataset Ingestion</span>
+            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/5">SQLite Memory</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ SECTION (Regra A2 / Objeções) -->
+    <section id="faq" class="py-20 border-b border-white/10">
+      <div class="max-w-[680px] mb-12">
+        <span class="text-xs font-mono uppercase tracking-wider text-gray-400">Perguntas Frequentes</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold text-white mt-2">
+          Dúvidas comuns sobre desenvolvimento e trabalho
+        </h2>
+      </div>
+
+      <div class="space-y-4 max-w-3xl">
+
+        <div class="card-surface rounded-xl p-5">
+          <h4 class="text-sm font-semibold text-white mb-2">Qual é o seu nível de experiência com desenvolvimento para Minecraft?</h4>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Desenvolvo e configuro servidores nos ambientes Spigot, Paper e Fabric. Sei como criar mecânicas exclusivas em Java, manipular eventos de jogadores e entidades, e configurar integrações de banco de dados para evitar perda de dados e lag de leitura.
+          </p>
+        </div>
+
+        <div class="card-surface rounded-xl p-5">
+          <h4 class="text-sm font-semibold text-white mb-2">Como você lida com quedas de TPS e instabilidade no servidor?</h4>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Uso ferramentas de profiling como o Spark para localizar exatamente quais classes, chunks ou tarefas assíncronas estão sobrecarregando a main thread. Aplico flags Aikar de JVM para manter a coleta de lixo estável e configuro limites realistas de visão e entidades.
+          </p>
+        </div>
+
+        <div class="card-surface rounded-xl p-5">
+          <h4 class="text-sm font-semibold text-white mb-2">Você tem disponibilidade para trabalhar em equipe?</h4>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Sim. Tenho boa comunicação, trabalho com versionamento via Git e estou habituado a alinhar prioridades e escopos de tarefas diretamente com administradores e gerentes de comunidade.
+          </p>
+        </div>
+
+        <div class="card-surface rounded-xl p-5">
+          <h4 class="text-sm font-semibold text-white mb-2">Você também gerencia servidores dedicados e Linux VPS?</h4>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Sim. Minha infraestrutura roda em servidores Linux próprios (Ubuntu). Sei gerenciar permissões de usuário, automatizar rotinas de inicialização com PM2 e Systemd e proteger as portas de rede do servidor.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FINAL CALL TO ACTION (Regra A2 / B2) -->
+    <section id="contato" class="py-24 text-center">
+      <div class="max-w-xl mx-auto card-surface rounded-3xl p-10 border border-white/10">
+        <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block mb-4"></span>
+        <h2 class="text-2xl sm:text-4xl font-semibold text-white mb-4">
+          Pronto para integrar a equipe da PacMC.
+        </h2>
+        <p class="text-gray-400 text-sm leading-relaxed mb-8">
+          Disponível para testes práticos, desenvolvimento de plugins sob demanda ou administração técnica de infraestrutura.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div class="w-full sm:w-auto px-7 py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            <span>Discord: <strong class="font-mono text-white select-all">wdprozin_</strong></span>
+          </div>
+          <a href="https://github.com/wdprozin2" target="_blank" class="w-full sm:w-auto px-7 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 font-medium text-sm transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            Ver Repositórios no GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-white/10 py-8 text-center text-xs text-gray-400 font-mono">
+    <p>© 2026 João Lucas • Construído sob princípios de design de alta conversão e Apple HIG.</p>
+  </footer>
+
+  <!-- SCRIPT: Tagline Reveal Word by Word (Regra B11) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const taglineText = document.getElementById('tagline-text');
+      if (taglineText) {
+        const words = taglineText.innerText.trim().split(/\s+/);
+        taglineText.innerHTML = words.map(w => `<span class="tagline-word">${w} </span>`).join('');
+
+        const wordElements = taglineText.querySelectorAll('.tagline-word');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              wordElements.forEach((el, index) => {
+                setTimeout(() => {
+                  el.classList.add('revealed');
+                }, index * 45);
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.35 });
+
+        observer.observe(taglineText);
+      }
+    });
+  </script>
+
+</body>
+</html>
