@@ -4,12 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>João Spina | Systems, Minecraft & AI Developer</title>
+    <!-- Favicon & Brand Icons -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.png">
+  <link rel="apple-touch-icon" href="logo.png">
   <meta name="description" content="Engenheiro de software especializado em plugins de alta performance para Minecraft (Java, Paper, Spigot), sistemas distribuídos em Linux e agentes autônomos.">
   
-  <!-- Fontes Geist e Geist Mono (Landing Page Design Standard) -->
+    <!-- Premium Typography: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,8 +22,8 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Geist', 'sans-serif'],
-            mono: ['Geist Mono', 'monospace'],
+            sans: ['"Plus Jakarta Sans"', 'Geist', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'Geist Mono', 'monospace'],
           },
           colors: {
             surface: {
@@ -43,18 +47,21 @@
   </script>
 
   <style>
-    /* Typography & transitions */
+    
+    /* Premium Typography */
     body {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Geist', sans-serif;
       background-color: #090a0f;
       color: #e2e8f0;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Headings & balance */
     h1, h2, h3, h4 {
       text-wrap: balance;
+      letter-spacing: -0.025em;
     }
     p {
       text-wrap: pretty;
@@ -62,66 +69,81 @@
 
     /* Hero text gradient */
     .hero-title-gradient {
-      background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%);
+      background: linear-gradient(180deg, #FFFFFF 15%, #CBD5E1 70%, #94A3B8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* Timing curve */
-    .ease-curve {
-      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
     /* Glass surface */
     .glass-bar {
-      background: rgba(9, 10, 15, 0.78);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(9, 10, 15, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    
-    /* Top Progress & Canvas */
+    /* Canvas */
     #bg-canvas {
-      opacity: 0.45;
-      transition: opacity 1s ease;
+      opacity: 0.5;
     }
 
     /* Ambient Glow background */
     @keyframes float-glow {
-      0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 0.38; }
-      50% { transform: translate(-46%, -20px) scale(1.18); opacity: 0.65; }
+      0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 0.4; }
+      50% { transform: translate(-46%, -18px) scale(1.15); opacity: 0.65; }
     }
     .ambient-glow {
       position: absolute;
       top: 0%;
       left: 50%;
       transform: translateX(-50%);
-      width: 800px;
+      width: 850px;
       height: 520px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.28) 0%, rgba(139, 92, 246, 0.12) 42%, transparent 70%);
-      filter: blur(90px);
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.14) 40%, transparent 70%);
+      filter: blur(95px);
       pointer-events: none;
       z-index: 0;
       animation: float-glow 8s ease-in-out infinite alternate;
     }
 
-    /* 3D Perspective Card Tilt */
-    .tilt-card {
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    /* Card Surface: ZERO CLIPPING - child elements are ALWAYS on top */
+    .card-surface {
+      background: #11131a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
     }
-    .tilt-card:hover {
-      box-shadow: 0 24px 48px -12px rgba(99, 102, 241, 0.22);
-      border-color: rgba(99, 102, 241, 0.45);
+    .card-surface > * {
+      position: relative;
+      z-index: 5;
+    }
+    .card-surface:hover {
+      transform: translateY(-5px);
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.2);
+    }
+
+    /* Spotlight Glow inside cards (positioned behind content z-index 1) */
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(350px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(99, 102, 241, 0.22), transparent 60%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+    .spotlight-card:hover::before {
+      opacity: 1;
     }
 
     /* Scroll reveal transitions */
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateY(24px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: opacity, transform;
     }
     .reveal.is-visible {
@@ -133,6 +155,7 @@
     .magnetic-btn {
       transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
     }
+
 
 
     /* Tagline word reveal */
@@ -153,9 +176,9 @@
   <!-- Floating Navigation -->
   <header class="fixed top-5 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
     <div class="glass-bar pointer-events-auto rounded-full px-5 py-2.5 flex items-center justify-between gap-6 max-w-4xl w-full shadow-2xl">
-      <a href="#" class="flex items-center gap-2.5 text-sm font-semibold text-white tracking-tight">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="font-mono text-xs text-gray-300 font-medium">joaospina.cloud</span>
+      <a href="#" class="flex items-center gap-2.5 text-sm font-semibold text-white tracking-tight group">
+        <img src="logo.png" alt="João Spina" class="w-7 h-7 rounded-full object-cover ring-2 ring-indigo-500/40 shadow-sm shadow-indigo-500/50 transition-transform duration-300 group-hover:scale-110">
+        <span class="font-mono text-xs text-white font-semibold">joaospina.cloud</span>
       </a>
 
       <nav class="hidden md:flex items-center gap-6 text-xs text-gray-300 font-medium">
@@ -545,7 +568,10 @@
     <!-- FINAL CALL TO ACTION -->
     <section id="contato" class="py-24 text-center reveal">
       <div class="max-w-xl mx-auto card-surface rounded-3xl p-10 border border-white/10">
-        <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block mb-4"></span>
+        <div class="relative inline-block mb-5">
+          <div class="absolute -inset-1 rounded-2xl bg-indigo-500/30 blur-md pointer-events-none"></div>
+          <img src="logo.png" alt="Logo João Spina" class="relative w-14 h-14 rounded-2xl mx-auto object-cover ring-2 ring-indigo-500/50 shadow-2xl">
+        </div>
         <h2 class="text-2xl sm:text-4xl font-semibold text-white mb-4">
           Pronto para construir sistemas e plugins de alta performance.
         </h2>
@@ -571,7 +597,7 @@
     <p>© 2026 João Spina. Todos os direitos reservados.</p>
   </footer>
 
-      <!-- SCRIPTS: Next-Gen Interactive Animations & Visual Effects -->
+        <!-- SCRIPTS: Next-Gen Interactive Animations & Observers -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // 1. Top Scroll Progress
@@ -644,7 +670,6 @@
             if (p.y < 0) p.y = height;
             if (p.y > height) p.y = 0;
 
-            // Mouse repulsion subtle
             const mdx = p.x - mouseX;
             const mdy = p.y - mouseY;
             const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
@@ -698,22 +723,14 @@
       }, { threshold: 0.08 });
       reveals.forEach(el => revealObserver.observe(el));
 
-      // 5. 3D Perspective Card Tilt Effect
+      // 5. Spotlight Glow on Cards (NO CLIPPING, uses internal CSS vars)
       const cards = document.querySelectorAll('.card-surface');
       cards.forEach(card => {
-        card.classList.add('tilt-card');
+        card.classList.add('spotlight-card');
         card.addEventListener('mousemove', e => {
           const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = ((y - centerY) / centerY) * -6;
-          const rotateY = ((x - centerX) / centerX) * 6;
-          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
         });
       });
 
