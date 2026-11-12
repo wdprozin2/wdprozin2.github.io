@@ -80,41 +80,48 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
+    
+    /* Top Progress & Canvas */
+    #bg-canvas {
+      opacity: 0.45;
+      transition: opacity 1s ease;
+    }
+
     /* Ambient Glow background */
     @keyframes float-glow {
-      0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 0.35; }
-      50% { transform: translate(-45%, -15px) scale(1.15); opacity: 0.55; }
+      0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 0.38; }
+      50% { transform: translate(-46%, -20px) scale(1.18); opacity: 0.65; }
     }
     .ambient-glow {
       position: absolute;
-      top: 2%;
+      top: 0%;
       left: 50%;
       transform: translateX(-50%);
-      width: 750px;
-      height: 480px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, rgba(139, 92, 246, 0.1) 40%, transparent 70%);
-      filter: blur(85px);
+      width: 800px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.28) 0%, rgba(139, 92, 246, 0.12) 42%, transparent 70%);
+      filter: blur(90px);
       pointer-events: none;
       z-index: 0;
-      animation: float-glow 9s ease-in-out infinite alternate;
+      animation: float-glow 8s ease-in-out infinite alternate;
     }
 
-    /* Shimmer effect for badges */
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
+    /* 3D Perspective Card Tilt */
+    .tilt-card {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
     }
-    .badge-shimmer {
-      background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0.03) 100%);
-      background-size: 200% 100%;
-      animation: shimmer 4s infinite linear;
+    .tilt-card:hover {
+      box-shadow: 0 24px 48px -12px rgba(99, 102, 241, 0.22);
+      border-color: rgba(99, 102, 241, 0.45);
     }
 
     /* Scroll reveal transitions */
     .reveal {
       opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: opacity, transform;
     }
     .reveal.is-visible {
@@ -122,38 +129,11 @@
       transform: translateY(0);
     }
 
-    /* Smooth Card Hover Lift & Glow */
-    .card-surface {
-      background: #11131a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
-      position: relative;
-    }
-    .card-surface:hover {
-      transform: translateY(-4px);
-      border-color: rgba(99, 102, 241, 0.32);
-      box-shadow: 0 16px 36px -12px rgba(99, 102, 241, 0.15);
+    /* Magnetic CTA buttons */
+    .magnetic-btn {
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
     }
 
-    /* Interactive Spotlight Card Border Glow */
-    .spotlight-card::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      padding: 1px;
-      background: radial-gradient(350px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(99, 102, 241, 0.35), transparent 45%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      z-index: 1;
-    }
-    .spotlight-card:hover::before {
-      opacity: 1;
-    }
 
     /* Tagline word reveal */
     .tagline-word {
@@ -165,7 +145,10 @@
     }
   </style>
 </head>
-<body class="selection:bg-indigo-600 selection:text-white">
+<body class="selection:bg-indigo-600 selection:text-white relative bg-[#090a0f]">
+  <!-- Top Scroll Progress Indicator -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-400 z-[100] transition-all duration-75" style="width: 0%;"></div>
+  <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
   <!-- Floating Navigation -->
   <header class="fixed top-5 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
@@ -232,7 +215,10 @@
         <!-- Metric Proof Bar -->
         <div class="grid grid-cols-3 gap-6 pt-12 mt-12 border-t border-white/10">
           <div>
-            <div class="font-mono text-xl sm:text-2xl font-semibold text-white">20.0 TPS</div>
+            <div class="font-mono text-xl sm:text-2xl font-semibold text-white flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block"></span>
+              <span id="counter-tps">0.0</span> TPS
+            </div>
             <div class="text-xs text-gray-400 mt-1 font-sans">Meta de tick rate contínua</div>
           </div>
           <div>
@@ -585,10 +571,100 @@
     <p>© 2026 João Spina. Todos os direitos reservados.</p>
   </footer>
 
-    <!-- SCRIPTS: Interactive Animations & Observers -->
+      <!-- SCRIPTS: Next-Gen Interactive Animations & Visual Effects -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Tagline word by word reveal
+      // 1. Top Scroll Progress
+      const progressBar = document.getElementById('scroll-progress');
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = h > 0 ? (window.scrollY / h) * 100 : 0;
+        if (progressBar) progressBar.style.width = progress + '%';
+      }, { passive: true });
+
+      // 2. Interactive Constellation Canvas
+      const canvas = document.getElementById('bg-canvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }, { passive: true });
+
+        const particles = [];
+        const numParticles = Math.min(45, Math.floor(window.innerWidth / 30));
+        let mouseX = -1000, mouseY = -1000;
+
+        window.addEventListener('mousemove', e => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        }, { passive: true });
+
+        for (let i = 0; i < numParticles; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.45,
+            vy: (Math.random() - 0.5) * 0.45,
+            radius: Math.random() * 1.6 + 0.8
+          });
+        }
+
+        function drawCanvas() {
+          ctx.clearRect(0, 0, width, height);
+
+          // Draw connections
+          for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 110) {
+                const alpha = (1 - dist / 110) * 0.18;
+                ctx.strokeStyle = 'rgba(99, 102, 241, ' + alpha + ')';
+                ctx.lineWidth = 0.8;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+              }
+            }
+          }
+
+          // Draw particles
+          for (const p of particles) {
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+            if (p.y < 0) p.y = height;
+            if (p.y > height) p.y = 0;
+
+            // Mouse repulsion subtle
+            const mdx = p.x - mouseX;
+            const mdy = p.y - mouseY;
+            const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+            if (mdist < 80) {
+              p.x += (mdx / mdist) * 1.2;
+              p.y += (mdy / mdist) * 1.2;
+            }
+
+            ctx.fillStyle = 'rgba(165, 180, 252, 0.45)';
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          requestAnimationFrame(drawCanvas);
+        }
+        drawCanvas();
+      }
+
+      // 3. Tagline word by word reveal
       const taglineText = document.getElementById('tagline-text');
       if (taglineText) {
         const words = taglineText.innerText.trim().split(/\s+/);
@@ -601,7 +677,7 @@
               wordElements.forEach((el, index) => {
                 setTimeout(() => {
                   el.classList.add('revealed');
-                }, index * 45);
+                }, index * 40);
               });
               taglineObserver.unobserve(entry.target);
             }
@@ -610,7 +686,7 @@
         taglineObserver.observe(taglineText);
       }
 
-      // 2. Smooth Scroll Reveal on Sections
+      // 4. Smooth Scroll Reveal on Sections
       const reveals = document.querySelectorAll('.reveal');
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -622,15 +698,63 @@
       }, { threshold: 0.08 });
       reveals.forEach(el => revealObserver.observe(el));
 
-      // 3. Spotlight cursor glow on cards (Linear/Vercel style)
-      document.querySelectorAll('.card-surface').forEach(card => {
-        card.classList.add('spotlight-card');
+      // 5. 3D Perspective Card Tilt Effect
+      const cards = document.querySelectorAll('.card-surface');
+      cards.forEach(card => {
+        card.classList.add('tilt-card');
         card.addEventListener('mousemove', e => {
           const rect = card.getBoundingClientRect();
-          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -6;
+          const rotateY = ((x - centerX) / centerX) * 6;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
         });
       });
+
+      // 6. Magnetic CTA Buttons
+      const magneticButtons = document.querySelectorAll('a[href="#contato"], a[href="#minecraft"]');
+      magneticButtons.forEach(btn => {
+        btn.classList.add('magnetic-btn');
+        btn.addEventListener('mousemove', e => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - (rect.left + rect.width / 2);
+          const y = e.clientY - (rect.top + rect.height / 2);
+          btn.style.transform = `translate(${(x * 0.15).toFixed(1)}px, ${(y * 0.15).toFixed(1)}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = 'translate(0px, 0px)';
+        });
+      });
+
+      // 7. Counter Animation for 20.0 TPS
+      const tpsEl = document.getElementById('counter-tps');
+      if (tpsEl) {
+        let counted = false;
+        const counterObserver = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting && !counted) {
+            counted = true;
+            const target = 20.0;
+            const duration = 1200;
+            const start = performance.now();
+            function updateCounter(now) {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const val = (progress * (2 - progress)) * target;
+              tpsEl.innerText = val.toFixed(1);
+              if (progress < 1) requestAnimationFrame(updateCounter);
+              else tpsEl.innerText = '20.0';
+            }
+            requestAnimationFrame(updateCounter);
+          }
+        }, { threshold: 0.5 });
+        counterObserver.observe(tpsEl);
+      }
     });
   </script>
 
