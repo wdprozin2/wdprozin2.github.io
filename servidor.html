@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaTerra » RPG &amp; Sobrevivência | Servidor Oficial de Minecraft</title>
+  <meta name="description" content="Servidor oficial de sobrevivência imersiva com biomas épicos (Terralith), RPG com AuraSkills, monstros dinâmicos, texturas HD automáticas e crossplay completo Java &amp; Bedrock.">
+
+  <!-- Fontes Geist e JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            surface: {
+              950: '#000000',
+              900: '#090a0f',
+              850: '#11131a',
+              800: '#181a24',
+              700: '#232636',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #090a0f;
+      color: #f3f4f6;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    .card-surface {
+      background: rgba(17, 19, 26, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.3);
+    }
+    .ambient-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 600px;
+      background: radial-gradient(ellipse 700px 400px at center 100px, rgba(16, 185, 129, 0.12), rgba(245, 158, 11, 0.05), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen">
+  <div class="ambient-glow"></div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#090a0f]/80 border-b border-white/10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-white font-medium text-xs sm:text-sm hover:text-emerald-400 transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        <span>Voltar ao Portfólio</span>
+      </a>
+
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-mono">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="header-status">Online</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-12 pb-24 relative z-10">
+
+    <!-- Hero Title -->
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono mb-4">
+        ⚔️ Paper 26.3 • Crossplay Java &amp; Bedrock
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+        NovaTerra <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-emerald-400 to-teal-300">» RPG &amp; Survival</span>
+      </h1>
+      <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Uma experiência imersiva de sobrevivência definitiva: mundos expandidos, masmorras vivas, evolução de habilidades e compatibilidade total para você jogar com seus amigos em qualquer dispositivo.
+      </p>
+    </div>
+
+    <!-- Quick Connect Hub -->
+    <div class="card-surface rounded-3xl p-6 sm:p-8 mb-10 border border-white/10 relative overflow-hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Java Card -->
+        <div class="bg-black/40 rounded-2xl p-5 border border-white/5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <span>☕</span> Minecraft Java (PC)
+              </span>
+              <span class="text-[11px] font-mono text-gray-400">Versão: 1.16 &rarr; 26.3</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-3">Conexão direta recomendada para computadores (Windows, Mac, Linux):</p>
+            <div class="font-mono text-sm sm:text-base text-emerald-400 font-semibold bg-white/5 px-3 py-2.5 rounded-xl border border-white/5 mb-4 break-all select-all flex items-center justify-between">
+              <span>jogar.joaospina.cloud</span>
+            </div>
+          </div>
+          <button onclick="copyIp('jogar.joaospina.cloud', this, 'IP Java Copiado!')" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs sm:text-sm transition-all duration-200 shadow-lg shadow-emerald-600/20 active:scale-[0.98] flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+            <span>Copiar IP Java</span>
+          </button>
+        </div>
+
+        <!-- Bedrock Card -->
+        <div class="bg-black/40 rounded-2xl p-5 border border-white/5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <span>📱</span> Bedrock (Celular &amp; Consoles)
+              </span>
+              <span class="text-[11px] font-mono text-amber-300 font-semibold">Porta: 19132</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-3">Para Android, iOS, Xbox, PlayStation e Nintendo Switch:</p>
+            <div class="font-mono text-sm sm:text-base text-teal-300 font-semibold bg-white/5 px-3 py-2.5 rounded-xl border border-white/5 mb-4 break-all select-all flex items-center justify-between">
+              <span>jogar.joaospina.cloud:19132</span>
+            </div>
+          </div>
+          <button onclick="copyIp('jogar.joaospina.cloud:19132', this, 'Endereço e Porta Copiados!')" class="w-full py-2.5 px-4 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-medium text-xs sm:text-sm transition-all duration-200 shadow-lg shadow-teal-600/20 active:scale-[0.98] flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+            <span>Copiar IP Bedrock</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Live Server Status Bar -->
+      <div class="mt-6 pt-5 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2 text-gray-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="live-players" class="text-white font-mono font-medium">Carregando status...</span>
+          <span class="text-gray-600">•</span>
+          <span id="live-motd" class="text-amber-300 truncate max-w-xs">NovaTerra » RPG &amp; Sobrevivência</span>
+        </div>
+        <div class="font-mono text-gray-400 text-[11px]">
+          Uptime 24/7 na VPS joaospina.cloud
+        </div>
+      </div>
+    </div>
+
+    <!-- Step-by-Step Connection Guides -->
+    <div class="mb-12">
+      <h2 class="text-xl sm:text-2xl font-bold text-white mb-6">Como Entrar no Servidor</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Guia Java -->
+        <div class="card-surface rounded-2xl p-6 border border-white/10">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-sm">1</span>
+            <h3 class="text-base font-semibold text-white">No Computador (Java Edition)</h3>
+          </div>
+          <ol class="space-y-3 text-xs sm:text-sm text-gray-300 list-decimal list-inside leading-relaxed">
+            <li>Abra o seu Minecraft (Versão 1.20 ou superior recomendada).</li>
+            <li>Clique em <strong>Multijogador</strong> e depois em <strong>Adicionar Servidor</strong>.</li>
+            <li>No campo <em>Nome do Servidor</em>, digite: <code class="text-amber-300 font-mono">NovaTerra</code>.</li>
+            <li>No campo <em>Endereço do Servidor</em>, coloque: <code class="text-emerald-400 font-mono">jogar.joaospina.cloud</code>.</li>
+            <li>Clique em <strong>Concluído</strong> e entre no servidor!</li>
+          </ol>
+        </div>
+
+        <!-- Guia Bedrock -->
+        <div class="card-surface rounded-2xl p-6 border border-white/10">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold text-sm">2</span>
+            <h3 class="text-base font-semibold text-white">No Celular / Console (Bedrock)</h3>
+          </div>
+          <ol class="space-y-3 text-xs sm:text-sm text-gray-300 list-decimal list-inside leading-relaxed">
+            <li>Abra o Minecraft no seu celular, tablet ou console.</li>
+            <li>Clique em <strong>Jogar</strong> e vá na aba <strong>Servidores</strong>.</li>
+            <li>Role até o final e clique em <strong>Adicionar Servidor</strong>.</li>
+            <li>Nome: <code class="text-amber-300 font-mono">NovaTerra</code>.</li>
+            <li>Endereço: <code class="text-emerald-400 font-mono">jogar.joaospina.cloud</code>.</li>
+            <li>Porta: <code class="text-teal-300 font-mono">19132</code> (deixe como está).</li>
+            <li>Clique em <strong>Salvar</strong> ou <strong>Jogar</strong>!</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Server Features Showcase -->
+    <div class="mb-12">
+      <h2 class="text-xl sm:text-2xl font-bold text-white mb-6">Mecânicas e Diferenciais do NovaTerra</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card-surface rounded-2xl p-5 border border-white/10">
+          <div class="text-2xl mb-3">🏔️</div>
+          <h3 class="text-sm font-semibold text-white mb-1.5">Terralith (+100 Biomas)</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Geração de mundo totalmente reformulada com desfiladeiros gigantescos, vulcões, florestas densas e montanhas que tocam as nuvens.
+          </p>
+        </div>
+
+        <div class="card-surface rounded-2xl p-5 border border-white/10">
+          <div class="text-2xl mb-3">🔥</div>
+          <h3 class="text-sm font-semibold text-white mb-1.5">Incendium &amp; Nullscape</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Nether vulcânico com fortalezas inéditas e o End expandido com 384 blocos de altura e ilhas flutuantes com perigos reais.
+          </p>
+        </div>
+
+        <div class="card-surface rounded-2xl p-5 border border-white/10">
+          <div class="text-2xl mb-3">⚔️</div>
+          <h3 class="text-sm font-semibold text-white mb-1.5">AuraSkills &amp; RPG</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Suba de nível em 11 profissões (Mineração, Combate, Fazendeiro), desbloqueie mana e habilidades passivas para fortalecer seu personagem.
+          </p>
+        </div>
+
+        <div class="card-surface rounded-2xl p-5 border border-white/10">
+          <div class="text-2xl mb-3">💀</div>
+          <h3 class="text-sm font-semibold text-white mb-1.5">Monstros Dinâmicos</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            LevelledMobs garante que monstros em áreas mais perigosas possuam níveis maiores, poderes especiais e recompensas proporcionais.
+          </p>
+        </div>
+
+        <div class="card-surface rounded-2xl p-5 border border-white/10">
+          <div class="text-2xl mb-3">🎨</div>
+          <h3 class="text-sm font-semibold text-white mb-1.5">Texturas HD KASTLE</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Pacote Faithful 32x com itens e armas 3D exclusivas entregues automaticamente no momento em que você entra no servidor.
+          </p>
+        </div>
+
+        <div class="card-surface rounded-2xl p-5 border border-white/10">
+          <div class="text-2xl mb-3">⛏️</div>
+          <h3 class="text-sm font-semibold text-white mb-1.5">VeinMiner &amp; QoL</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Minere minérios inteiros ou corte árvores em um só golpe, economia estável, sistema de terrenos protegidos e zero travamentos.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commands Cheat Sheet -->
+    <div class="card-surface rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 mb-12">
+      <h2 class="text-lg sm:text-xl font-bold text-white mb-4">Comandos Úteis no Servidor</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+        <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <span class="text-amber-400 font-semibold">/skills</span>
+          <span class="text-gray-400 font-sans">Abre menu de habilidades e RPG</span>
+        </div>
+        <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <span class="text-amber-400 font-semibold">/sethome [nome]</span>
+          <span class="text-gray-400 font-sans">Marca a localização da sua base</span>
+        </div>
+        <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <span class="text-amber-400 font-semibold">/home [nome]</span>
+          <span class="text-gray-400 font-sans">Teleporta de volta para sua base</span>
+        </div>
+        <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <span class="text-amber-400 font-semibold">/spawn</span>
+          <span class="text-gray-400 font-sans">Retorna para a vila inicial</span>
+        </div>
+        <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <span class="text-amber-400 font-semibold">/tpa [jogador]</span>
+          <span class="text-gray-400 font-sans">Pede teleporte até um amigo</span>
+        </div>
+        <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <span class="text-amber-400 font-semibold">/tpaccept</span>
+          <span class="text-gray-400 font-sans">Aceita pedido de teleporte</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="text-center py-6">
+      <p class="text-xs text-gray-500 mb-3">NovaTerra • Servidor mantido e configurado por João Spina</p>
+      <a href="index.html" class="inline-flex items-center gap-2 text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors">
+        <span>Conheça os projetos de infraestrutura e engenharia de João Spina &rarr;</span>
+      </a>
+    </div>
+
+  </main>
+
+  <script>
+    function copyIp(text, btn, feedback) {
+      navigator.clipboard.writeText(text).then(() => {
+        const span = btn.querySelector('span');
+        const orig = span.innerText;
+        span.innerText = feedback || 'Copiado!';
+        btn.classList.add('ring-2', 'ring-white/50');
+        setTimeout(() => {
+          span.innerText = orig;
+          btn.classList.remove('ring-2', 'ring-white/50');
+        }, 2200);
+      });
+    }
+
+    function updateLiveStatus() {
+      fetch('https://api.mcstatus.io/v2/status/java/jogar.joaospina.cloud')
+        .then(r => r.json())
+        .then(d => {
+          const livePlayers = document.getElementById('live-players');
+          const headerStatus = document.getElementById('header-status');
+          const liveMotd = document.getElementById('live-motd');
+          if (d.online) {
+            if (headerStatus) headerStatus.innerText = 'Online (' + d.players.online + ')';
+            if (livePlayers) livePlayers.innerText = d.players.online + '/' + d.players.max + ' jogadores online';
+            if (liveMotd && d.motd && d.motd.clean) liveMotd.innerText = d.motd.clean.replace(/\n/g, ' • ');
+          } else {
+            if (headerStatus) headerStatus.innerText = 'Reiniciando';
+            if (livePlayers) livePlayers.innerText = 'Servidor Reiniciando...';
+          }
+        })
+        .catch(() => {});
+    }
+
+    updateLiveStatus();
+    setInterval(updateLiveStatus, 25000);
+  </script>
+</body>
+</html>
