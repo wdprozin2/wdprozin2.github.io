@@ -207,7 +207,6 @@
       </a>
 
       <nav class="hidden md:flex items-center gap-6 text-xs text-gray-300 font-medium">
-        <a href="#servidor" class="hover:text-emerald-400 text-white transition-colors duration-200 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Servidor NovaTerra</a>
         <a href="#minecraft" class="hover:text-white transition-colors duration-200">Minecraft & Java</a>
         <a href="#sistemas" class="hover:text-white transition-colors duration-200">Sistemas & VPS</a>
         <a href="#projetos" class="hover:text-white transition-colors duration-200">Projetos</a>
@@ -219,9 +218,6 @@
       </nav>
 
       <div class="flex items-center gap-1.5 sm:gap-2">
-        <a href="#servidor" class="text-[11px] sm:text-xs font-semibold px-2.5 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-1.5 shadow-sm">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Jogar
-        </a>
         <a href="https://github.com/wdprozin2" target="_blank" class="text-[11px] sm:text-xs font-medium px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-white border border-white/10 transition-all duration-200 active:scale-[0.98] hidden xs:inline-flex items-center">
           GitHub
         </a>
@@ -291,146 +287,6 @@
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- SECTION: SERVIDOR OFICIAL NOVATERRA -->
-    <section id="servidor" class="py-14 sm:py-20 border-b border-white/10 reveal">
-      <div class="mb-10 sm:mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-3">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span id="mc-status-text">Servidor Online</span> • <span id="mc-player-count">0/100 online</span>
-        </div>
-        <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-          NovaTerra <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-emerald-400 to-teal-300">» RPG &amp; Sobrevivência</span>
-        </h2>
-        <p class="text-gray-300 text-sm sm:text-base mt-3 max-w-2xl leading-relaxed">
-          Nosso servidor oficial de sobrevivência imersiva. Mundos expandidos com biomas épicos (Terralith), RPG completo com AuraSkills, monstros de alto nível, texturas HD automáticas e crossplay completo entre PC e Celular.
-        </p>
-      </div>
-
-      <!-- Live Connection Hub Card -->
-      <div class="card-surface rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 relative overflow-hidden mb-8">
-        <div class="absolute -right-16 -top-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <!-- Left: IP Java -->
-          <div class="lg:col-span-6 bg-black/40 rounded-xl p-5 border border-white/5 flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center gap-2">
-                <span class="w-7 h-7 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-mono font-bold text-xs">☕</span>
-                <span class="text-xs font-semibold text-white tracking-wide uppercase">Minecraft Java (PC)</span>
-              </div>
-              <span class="text-[11px] font-mono text-gray-400">Porta: 25565</span>
-            </div>
-            <div class="font-mono text-base sm:text-lg text-emerald-400 font-semibold select-all bg-white/5 px-3 py-2.5 rounded-lg border border-white/5 break-all mb-3 flex items-center justify-between">
-              <span>jogar.joaospina.cloud</span>
-            </div>
-            <button onclick="copyServerIp('jogar.joaospina.cloud', this, 'IP Java Copiado!')" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs sm:text-sm transition-all duration-200 shadow-lg shadow-emerald-600/20 active:scale-[0.98] flex items-center justify-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-              <span>Copiar IP Java</span>
-            </button>
-          </div>
-
-          <!-- Right: IP Bedrock -->
-          <div class="lg:col-span-6 bg-black/40 rounded-xl p-5 border border-white/5 flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center gap-2">
-                <span class="w-7 h-7 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center font-mono font-bold text-xs">📱</span>
-                <span class="text-xs font-semibold text-white tracking-wide uppercase">Bedrock (Celular / Console)</span>
-              </div>
-              <span class="text-[11px] font-mono text-amber-300 font-semibold">Porta: 19132</span>
-            </div>
-            <div class="font-mono text-base sm:text-lg text-teal-300 font-semibold select-all bg-white/5 px-3 py-2.5 rounded-lg border border-white/5 break-all mb-3 flex items-center justify-between">
-              <span>jogar.joaospina.cloud:19132</span>
-            </div>
-            <button onclick="copyServerIp('jogar.joaospina.cloud:19132', this, 'Endereço e Porta Copiados!')" class="w-full py-2.5 px-4 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-medium text-xs sm:text-sm transition-all duration-200 shadow-lg shadow-teal-600/20 active:scale-[0.98] flex items-center justify-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-              <span>Copiar IP Bedrock</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- MOTD Banner ao vivo -->
-        <div class="mt-6 pt-5 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          <div class="flex items-center gap-2 text-gray-400">
-            <span class="text-gray-500 font-mono">MOTD:</span>
-            <span id="mc-motd" class="text-amber-300 font-medium">NovaTerra » RPG &amp; Sobrevivência [26.3]</span>
-          </div>
-          <div class="flex items-center gap-2 font-mono text-gray-400">
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[11px]">Paper 26.3</span>
-            <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px]">Geyser Crossplay</span>
-            <a href="servidor.html" class="px-2 py-0.5 rounded bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 border border-indigo-500/30 text-[11px] transition-colors">Guia Completo &rarr;</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4 Pillars Grid (Apple HIG Nested Radius) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <!-- Pillar 1: Mundo Expandido -->
-        <div class="card-surface rounded-2xl p-5 border border-white/10 hover:border-amber-400/30 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-4 text-lg">
-              🌍
-            </div>
-            <h3 class="text-sm font-semibold text-white mb-1.5">Geração de Mundos Épica</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">
-              Terralith (+100 biomas inéditos), Incendium no Nether e Nullscape com limite de 384 blocos no End.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/5 text-[11px] font-mono text-amber-300/80">
-            Dungeons, Taverns &amp; Structory
-          </div>
-        </div>
-
-        <!-- Pillar 2: RPG AuraSkills -->
-        <div class="card-surface rounded-2xl p-5 border border-white/10 hover:border-indigo-400/30 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-4 text-lg">
-              ⚔️
-            </div>
-            <h3 class="text-sm font-semibold text-white mb-1.5">RPG &amp; AuraSkills</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">
-              11 profissões com níveis, atributos reais (Força, Mana, Vida, Defesa), LevelledMobs e menus 100% em português.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/5 text-[11px] font-mono text-indigo-300/80">
-            Progressão balanceada
-          </div>
-        </div>
-
-        <!-- Pillar 3: Crossplay Nativo -->
-        <div class="card-surface rounded-2xl p-5 border border-white/10 hover:border-teal-400/30 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center mb-4 text-lg">
-              📱
-            </div>
-            <h3 class="text-sm font-semibold text-white mb-1.5">Crossplay Java &amp; Bedrock</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">
-              Jogue no computador, celular ou tablet simultaneamente. Floodgate sincroniza skins e contas sem complicações.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/5 text-[11px] font-mono text-teal-300/80">
-            GeyserMC + Floodgate
-          </div>
-        </div>
-
-        <!-- Pillar 4: Texturas HD KASTLE -->
-        <div class="card-surface rounded-2xl p-5 border border-white/10 hover:border-emerald-400/30 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4 text-lg">
-              🎨
-            </div>
-            <h3 class="text-sm font-semibold text-white mb-1.5">Texturas HD Automáticas</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">
-              ResourcePackManager entrega o pacote visual KASTLE &amp; Faithful 32x automaticamente no login. Zero mods obrigatórios.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/5 text-[11px] font-mono text-emerald-300/80">
-            Auto-download no login
-          </div>
-        </div>
       </div>
     </section>
 
@@ -939,29 +795,7 @@
         });
       });
 
-      // 6.5. Minecraft Server Live Status
-    function checkLiveServerStatus() {
-      fetch('https://api.mcstatus.io/v2/status/java/jogar.joaospina.cloud')
-        .then(r => r.json())
-        .then(d => {
-          const statusText = document.getElementById('mc-status-text');
-          const playerCount = document.getElementById('mc-player-count');
-          const motdEl = document.getElementById('mc-motd');
-          if (d.online) {
-            if (statusText) statusText.innerText = 'Servidor Online';
-            if (playerCount) playerCount.innerText = `${d.players.online}/${d.players.max} online`;
-            if (motdEl && d.motd && d.motd.clean) motdEl.innerText = d.motd.clean.replace(/\n/g, ' | ');
-          } else {
-            if (statusText) statusText.innerText = 'Servidor Reiniciando';
-            if (playerCount) playerCount.innerText = '0/100 online';
-          }
-        })
-        .catch(() => {});
-    }
-    checkLiveServerStatus();
-    setInterval(checkLiveServerStatus, 30000);
-
-    // 7. Counter Animation for 20.0 TPS
+      // 7. Counter Animation for 20.0 TPS
       const tpsEl = document.getElementById('counter-tps');
       if (tpsEl) {
         let counted = false;
